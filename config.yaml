@@ -1,0 +1,42 @@
+# Training configuration for KLYMO ASCENT ML
+# Geospatial Super-Resolution Pipeline
+
+# Data settings
+data_dir: "./data"
+lr_patch_size: 32
+scale_factor: 8
+use_indices: false # Set to true to use 16-channel input with GAM
+
+# Model architecture
+num_rrdb_blocks: 23
+num_features: 64
+num_discriminator_scales: 3
+
+# Phase 1: PSNR Pre-training
+phase1_epochs: 50
+phase1_lr: 0.0001
+phase1_batch_size: 8
+
+# Phase 2: GAN Fine-tuning
+phase2_epochs: 50
+phase2_g_lr: 0.00001
+phase2_d_lr: 0.0001
+phase2_batch_size: 4
+
+# Training optimization
+gradient_accumulation_steps: 4
+mixed_precision: true
+num_workers: 4
+
+# Checkpointing
+checkpoint_dir: "./checkpoints"
+checkpoint_interval: 10
+save_best: true
+
+# Logging
+log_dir: "./logs"
+log_interval: 100
+val_interval: 500
+
+# Device (auto-detected if not specified)
+# device: 'cuda'
